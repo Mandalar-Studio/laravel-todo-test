@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Deploy to server
-          command: ssh -i $SSHKEY $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test/ && ./deploy.sh"
+          command: ssh -i /home/ubuntu/.ssh/github-key $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test/ && ./deploy.sh"
 
 workflows:
   version: 2
