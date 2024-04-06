@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  deploy-laravel:
+    docker:
+      - image: cimg/base:2021.10
+    steps:
+      - checkout
+      - run:
+          name: Deploy to server
+          command: |
+            ssh -i $SSHKEY $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test && ./deploy.sh"
+
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - deploy-laravel:
+          name: Deploy
+          environment:
+            HOST: $HOST
+            USERNAME: $USERNAME
+            SSHKEY: $SSHKEY
+          filters:
+            branches:
+              only:
+                - master
