@@ -14,7 +14,6 @@ jobs:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
           key: ${{secrets.SSHKEY}}
-          script: | 
-            "cd /home/ubuntu/laravel-todo-test && ./deploy.sh"
+          script: "cd /home/ubuntu/laravel-todo-test && ./deploy.sh"
       
           
