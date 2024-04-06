@@ -14,7 +14,7 @@ jobs:
           command: |
             echo "Access the server"
             ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
-            cd /home/ubuntu/devops ./deploy.sh
+            cd /home/ubuntu/laravel-todo-test ./deploy.sh
 
 
 workflows:
