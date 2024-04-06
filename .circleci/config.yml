@@ -3,16 +3,26 @@ version: 2.1
 jobs:
   deploy-laravel:
     docker:
-      - image: cimg/base:2021.10
+      - image: ubuntu:latest
     steps:
       - checkout
       - run:
-          name: Deploy to server
-          command: ssh -i /home/ubuntu/.ssh/github-key $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test/ && ./deploy.sh"
+          name: Run ssh on server
+          command: apt-get update && apt-get install -y openssh-client
+      - run:
+          name: SSH to Server
+          command: |
+            echo "Access the server"
+            ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
+            cd /home/ubuntu/devops ./deploy.sh
+
 
 workflows:
   version: 2
   deploy:
     jobs:
       - deploy-laravel:
-          name: Deploy
+          filters:
+            branches:
+              only:
+                - master
