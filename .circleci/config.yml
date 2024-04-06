@@ -14,7 +14,7 @@ jobs:
           command: |
             echo "$SSHKEY" > ssh_key.pem
             chmod 400 ssh_key.pem
-            ssh -o StrictHostKeyChecking=no -i ssh_key.pem $USERNAME@$HOST "cd /var/www/html/laravel-todo-test/ && ./deploy.sh"
+            ssh -o StrictHostKeyChecking=no -i ssh_key.pem $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test/ && ./deploy.sh"
 
 
 workflows:
