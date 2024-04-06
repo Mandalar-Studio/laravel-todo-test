@@ -12,10 +12,9 @@ jobs:
       - run:
           name: SSH to Server
           command: |
-            echo "Access the server"
-            ssh $USERNAME@$HOST -o StrictHostKeyChecking=no
-            echo "run the deploy.sh"
-            cd /home/ubuntu/laravel-todo-test && ./deploy.sh
+            echo "$SSHKEY" > ssh_key.pem
+            chmod 400 ssh_key.pem
+            ssh -i ssh_key.pem $USERNAME@$HOST "cd /var/www/html/laravel-todo-test/ && ./deploy.sh"
 
 
 workflows:
