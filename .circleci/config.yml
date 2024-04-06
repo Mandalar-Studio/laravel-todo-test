@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Deploy to server
           command: |
-            ssh -i $SSHKEY $USERNAME@$HOST "cd /home/ubuntu/laravel-todo-test && ./deploy.sh"
+            ssh -i $SSHKEY $USERNAME@$HOST "cd /var/www/html/laravel-todo-test/ && ./deploy.sh"
 
 workflows:
   version: 2
@@ -17,11 +17,3 @@ workflows:
     jobs:
       - deploy-laravel:
           name: Deploy
-          environment:
-            HOST: $HOST
-            USERNAME: $USERNAME
-            SSHKEY: $SSHKEY
-          filters:
-            branches:
-              only:
-                - master
